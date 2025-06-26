@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prompt Architect v6</title>
-    <!-- Tailwind CSS y Fuentes se mantienen igual -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* --- ESTILOS VISUALES SIN CAMBIOS --- */
         :root {
             --bg-dark: #111827;
             --bg-light: #1f2937;
@@ -40,7 +38,6 @@
         .radio-label:has(input:checked) { background-color: rgba(167, 139, 250, 0.1); border-color: var(--violet-glow); }
         .spinner { border: 2px solid var(--border-color); border-top-color: var(--violet-bright); border-radius: 50%; width: 1rem; height: 1rem; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        /* --- ESTILOS PARA NUEVOS ELEMENTOS --- */
         #project-management { display: flex; align-items: center; gap: 0.75rem; background-color: rgba(31, 41, 55, 0.5); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid var(--border-color); }
         #analysis-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 50; backdrop-filter: blur(5px); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
         #analysis-modal.visible { opacity: 1; visibility: visible; }
@@ -49,7 +46,6 @@
 <body>
     <canvas id="particles-js"></canvas>
 
-    <!-- Modal para análisis de calidad -->
     <div id="analysis-modal">
         <div class="bg-light w-11/12 max-w-2xl p-6 rounded-lg border border-border-color shadow-2xl">
             <h3 class="text-xl font-bold text-white mb-4">Análisis de Calidad del Prompt</h3>
@@ -58,9 +54,7 @@
         </div>
     </div>
     
-    <!-- La pantalla de login se mantiene igual -->
     <div id="login-screen" class="app-wrapper flex flex-col justify-center items-center text-center w-screen h-screen transition-opacity duration-500 ease-out bg-bg-dark z-10">
-        <!-- ... contenido de login screen sin cambios ... -->
          <h1 class="text-5xl lg:text-7xl font-black neon-text tracking-wider">PROMPT ARCHITECT</h1>
          <p class="text-gray-400 mt-4 text-lg">La herramienta profesional para construir prompts de aplicaciones.</p>
          <button id="enter-btn" class="btn btn-primary mt-8 text-lg">Comenzar</button>
@@ -71,7 +65,6 @@
             <div class="flex justify-center items-center gap-4">
                 <h1 class="text-3xl lg:text-5xl font-black neon-text tracking-wider">PROMPT ARCHITECT</h1>
             </div>
-            <!-- NUEVA SECCIÓN DE GESTIÓN DE PROYECTOS -->
             <div id="project-management" class="max-w-xl mx-auto mt-4">
                  <label for="project-selector" class="text-sm font-medium text-text-light whitespace-nowrap">Cargar Proyecto:</label>
                  <select id="project-selector" class="form-select !py-1 flex-grow"></select>
@@ -82,40 +75,57 @@
         
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Columna de Formularios -->
                 <div>
-                    <!-- Los pasos y formularios se mantienen en su mayoría, con cambios en la funcionalidad JS -->
-                    <!-- ... Arquetipo, Alcance, Definición ... -->
-
-                    <!-- SECCIÓN DE ESTRUCTURA MEJORADA -->
+                    <div class="form-section">
+                        <h2><span class="text-violet-400 font-bold">Paso 1:</span> Elige el Arquetipo de App</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="radio-label"><input type="radio" name="appArchetype" value="tutorial" class="mr-3"><div><span class="font-medium text-white">Tutorial</span></div></label>
+                            <label class="radio-label"><input type="radio" name="appArchetype" value="herramienta" class="mr-3"><div><span class="font-medium text-white">Herramienta</span></div></label>
+                            <label class="radio-label"><input type="radio" name="appArchetype" value="juego" class="mr-3"><div><span class="font-medium text-white">Juego</span></div></label>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h2><span class="text-violet-400 font-bold">Paso 2:</span> Define tu Aplicación</h2>
+                        <div>
+                            <label for="tema-central" class="form-label">A. Tema Central</label>
+                            <input type="text" id="tema-central" class="form-input" placeholder="Ej: El Sistema Solar">
+                        </div>
+                        <div class="mt-4">
+                            <label for="audiencia" class="form-label">B. Audiencia Objetivo</label>
+                             <input type="text" id="audiencia" class="form-input" placeholder="Ej: Niños de 8 a 10 años">
+                        </div>
+                        <div class="mt-4">
+                            <label for="tono" class="form-label">C. Tono y Estilo</label>
+                            <select id="tono" class="form-select">
+                                <option value="Profesional y claro">Profesional y claro</option>
+                                <option value="Lúdico e infantil">Lúdico e infantil</option>
+                                <option value="Futurista y neón">Futurista y neón</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-section">
                         <h2><span class="text-violet-400 font-bold">Paso 3:</span> Estructura el Contenido</h2>
                         <label class="form-label">D. Método de Estructura</label>
                         <div class="flex gap-4 mb-4">
-                             <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="ai" checked class="mr-3"><span class="font-medium text-white">Recomendada por IA</span></label>
+                             <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="ai" class="mr-3"><span class="font-medium text-white">Recomendada por IA</span></label>
                              <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="manual" class="mr-3"><span class="font-medium text-white">Manual</span></label>
                         </div>
-                        <!-- El contenedor de la IA ahora mostrará un spinner -->
                         <div id="subtemas-container-ai" class="flex items-center justify-center space-y-2 p-3 bg-gray-900/50 rounded-md border border-dashed border-gray-600 min-h-[100px]"></div>
                         <div id="subtemas-container-manual" class="space-y-3 hidden"></div>
                         <button id="add-subtema-btn" class="btn btn-primary mt-3 hidden">Añadir Subtema</button>
                     </div>
-
-                    <!-- SECCIÓN DE PEDAGOGÍA Y FUENTES MEJORADA -->
                     <div class="form-section">
                         <h2><span class="text-violet-400 font-bold">Paso 4:</span> Define la Pedagogía y Fuentes</h2>
                         <div id="pedagogy-section">
                             <label class="form-label">E. Modelo Pedagógico</label>
-                            <!-- El área de recomendación ahora mostrará un spinner -->
                             <div id="recommendation-area" class="flex items-center justify-center border border-violet-800 bg-violet-900/20 p-4 rounded-md min-h-[70px]"></div>
                         </div>
                         <div class="mt-6">
                             <label class="form-label">F. ¿Usarás material de referencia propio?</label>
                             <div class="flex gap-4">
-                                 <label class="radio-label flex-1"><input type="radio" name="useExternalDocs" value="no" checked class="mr-3"><span class="font-medium text-white">No</span></label>
+                                 <label class="radio-label flex-1"><input type="radio" name="useExternalDocs" value="no" class="mr-3"><span class="font-medium text-white">No</span></label>
                                  <label class="radio-label flex-1"><input type="radio" name="useExternalDocs" value="si" class="mr-3"><span class="font-medium text-white">Sí</span></label>
                             </div>
-                            <!-- SECCIÓN ACTIVADA: TEXTAREA PARA REFERENCIA -->
                             <div id="reference-material-section" class="mt-4 hidden">
                                 <label for="reference-material-input" class="form-label">Pega aquí tu material de referencia:</label>
                                 <textarea id="reference-material-input" class="form-textarea" rows="5" placeholder="Pega texto, notas, o un resumen de tu documento..."></textarea>
@@ -123,15 +133,12 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Columna de Output -->
                 <div class="sticky top-8 self-start">
                      <div class="form-section !bg-opacity-90">
                          <h2 class="!mb-4">Prompt Generado</h2>
                         <textarea id="output-prompt" rows="28" class="form-textarea bg-gray-900 font-mono text-sm" readonly></textarea>
                          <div class="flex gap-4 mt-4">
                             <button id="copy-btn" class="btn btn-primary w-full">Copiar Prompt</button>
-                            <!-- NUEVO BOTÓN DE ANÁLISIS -->
                             <button id="analyze-btn" class="btn btn-secondary w-full">Analizar Calidad</button>
                          </div>
                      </div>
@@ -140,8 +147,364 @@
         </div>
     </div>
     
-    <!-- El script principal se cargará externamente para mayor claridad -->
-    <script type="module" src="script.js"></script>
+    <script type="module">
+        // --- SCRIPT INTEGRADO DIRECTAMENTE EN EL HTML ---
+
+        // --- ANIMACIÓN DE PARTÍCULAS (SIN CAMBIOS) ---
+        const particlesCanvas = document.getElementById('particles-js');
+        if (particlesCanvas) {
+            const ctx = particlesCanvas.getContext('2d');
+            particlesCanvas.width = window.innerWidth;
+            particlesCanvas.height = window.innerHeight;
+            let neurons = [];
+            const connectionDistance = 200;
+            const pulseSpeed = 0.05;
+            class Neuron {
+                constructor(x, y) { this.x = x; this.y = y; this.radius = Math.random() * 2 + 1; this.color = `rgba(167, 139, 250, ${Math.random() * 0.5 + 0.2})`; this.connections = []; }
+                draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); }
+            }
+            class Connection {
+                constructor(from, to) { this.from = from; this.to = to; this.pulsePosition = Math.random(); this.pulseDirection = Math.random() > 0.5 ? 1 : -1; }
+                draw() {
+                    ctx.beginPath(); ctx.moveTo(this.from.x, this.from.y); ctx.lineTo(this.to.x, this.to.y); ctx.strokeStyle = `rgba(196, 181, 253, 0.1)`; ctx.stroke();
+                    const pulseX = this.from.x + (this.to.x - this.from.x) * this.pulsePosition; const pulseY = this.from.y + (this.to.y - this.from.y) * this.pulsePosition;
+                    ctx.beginPath(); ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2); ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; ctx.fill();
+                }
+                update() { this.pulsePosition += pulseSpeed * this.pulseDirection; if (this.pulsePosition > 1 || this.pulsePosition < 0) { this.pulseDirection *= -1; } this.draw(); }
+            }
+            function initNeurons() {
+                neurons = []; let numberOfNeurons = (particlesCanvas.width * particlesCanvas.height) / 12000;
+                for (let i = 0; i < numberOfNeurons; i++) { neurons.push(new Neuron(Math.random() * particlesCanvas.width, Math.random() * particlesCanvas.height)); }
+                for (let i = 0; i < neurons.length; i++) {
+                    for (let j = i + 1; j < neurons.length; j++) {
+                        const dx = neurons[i].x - neurons[j].x; const dy = neurons[i].y - neurons[j].y; const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < connectionDistance) { neurons[i].connections.push(new Connection(neurons[i], neurons[j])); }
+                    }
+                }
+            }
+            function animateNetwork() { requestAnimationFrame(animateNetwork); ctx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height); for (const neuron of neurons) { neuron.draw(); for (const connection of neuron.connections) { connection.update(); } } }
+            window.addEventListener('resize', () => { particlesCanvas.width = window.innerWidth; particlesCanvas.height = window.innerHeight; initNeurons(); });
+            initNeurons();
+            animateNetwork();
+        }
+
+        // --- INICIO DE LA LÓGICA DE LA APLICACIÓN ---
+        
+        const ui = {
+            loginScreen: document.getElementById('login-screen'),
+            appContainer: document.getElementById('app-container'),
+            enterBtn: document.getElementById('enter-btn'),
+            projectSelector: document.getElementById('project-selector'),
+            saveBtn: document.getElementById('save-btn'),
+            deleteBtn: document.getElementById('delete-btn'),
+            archetypeRadios: document.querySelectorAll('input[name="appArchetype"]'),
+            temaCentral: document.getElementById('tema-central'),
+            audiencia: document.getElementById('audiencia'),
+            tono: document.getElementById('tono'),
+            structureMethodRadios: document.querySelectorAll('input[name="structureMethod"]'),
+            subtemasContainerAi: document.getElementById('subtemas-container-ai'),
+            subtemasContainerManual: document.getElementById('subtemas-container-manual'),
+            addSubtemaBtn: document.getElementById('add-subtema-btn'),
+            recommendationArea: document.getElementById('recommendation-area'),
+            externalDocsRadios: document.querySelectorAll('input[name="useExternalDocs"]'),
+            referenceMaterialSection: document.getElementById('reference-material-section'),
+            referenceMaterialInput: document.getElementById('reference-material-input'),
+            outputPrompt: document.getElementById('output-prompt'),
+            copyBtn: document.getElementById('copy-btn'),
+            analyzeBtn: document.getElementById('analyze-btn'),
+            analysisModal: document.getElementById('analysis-modal'),
+            analysisContent: document.getElementById('analysis-content'),
+            closeModalBtn: document.getElementById('close-modal-btn'),
+        };
+
+        let state = {};
+        const getNewState = () => ({
+            id: `proj_${Date.now()}`,
+            name: "Nuevo Proyecto Sin Título",
+            lastModified: new Date().toISOString(),
+            appArchetype: 'tutorial',
+            temaCentral: '',
+            audiencia: '',
+            tono: 'Lúdico e infantil',
+            structureMethod: 'ai',
+            subtemas: [],
+            recommendedModel: {},
+            useExternalDocs: 'no',
+            referenceMaterial: '',
+        });
+
+        const projectManager = {
+            storageKey: 'promptArchitectProjects',
+            getProjects: function() {
+                try {
+                    const projects = localStorage.getItem(this.storageKey);
+                    return projects ? JSON.parse(projects) : this.getInitialTemplates();
+                } catch (e) {
+                    return this.getInitialTemplates();
+                }
+            },
+            saveProjects: function(projects) {
+                localStorage.setItem(this.storageKey, JSON.stringify(projects));
+            },
+            saveCurrentState: function() {
+                const projectName = prompt("Guardar proyecto como:", state.name);
+                if (!projectName) return;
+                state.name = projectName;
+                state.lastModified = new Date().toISOString();
+                let projects = this.getProjects();
+                const projectIndex = projects.findIndex(p => p.id === state.id);
+                if (projectIndex > -1) {
+                    projects[projectIndex] = state;
+                } else {
+                    projects.push(state);
+                }
+                this.saveProjects(projects);
+                populateProjectSelector();
+                ui.projectSelector.value = state.id;
+                alert("Proyecto guardado!");
+            },
+            deleteProject: function(projectId) {
+                if (!confirm("¿Borrar este proyecto?")) return;
+                let projects = this.getProjects();
+                const updatedProjects = projects.filter(p => p.id !== projectId);
+                this.saveProjects(updatedProjects);
+                loadState();
+            },
+            getInitialTemplates: function() {
+                return [
+                    { id: `proj_tpl_1`, name: "Plantilla: Curso de Python", lastModified: new Date().toISOString(), appArchetype: 'tutorial', temaCentral: 'Introducción a Python para principiantes', audiencia: 'Estudiantes sin experiencia en programación', tono: 'Profesional y claro', structureMethod: 'ai', subtemas: [], recommendedModel: {}, useExternalDocs: 'no', referenceMaterial: '' },
+                    { id: `proj_tpl_2`, name: "Plantilla: Juego del Sistema Solar", lastModified: new Date().toISOString(), appArchetype: 'juego', temaCentral: 'Exploración del Sistema Solar', audiencia: 'Niños de 8 a 12 años', tono: 'Lúdico e infantil', structureMethod: 'ai', subtemas: [], recommendedModel: {}, useExternalDocs: 'no', referenceMaterial: '' },
+                ];
+            }
+        };
+
+        const api = {
+            generate: async function(prompt) {
+                try {
+                    const response = await fetch('/api/generate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt })
+                    });
+                    if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
+                    const data = await response.json();
+                    return data.text;
+                } catch (error) {
+                    alert("Error: No se pudo comunicar con la IA.");
+                    return null;
+                }
+            },
+            getSubtopics: async function() {
+                if (!state.temaCentral || !state.audiencia) return;
+                setLoading(ui.subtemasContainerAi, true, 'Generando...');
+                const prompt = `Eres un diseñador instruccional. Para el tema '${state.temaCentral}' y la audiencia '${state.audiencia}', genera un array JSON con 4 subtemas. Responde solo con el array.`;
+                const result = await this.generate(prompt);
+                setLoading(ui.subtemasContainerAi, false);
+                if (result) {
+                    try {
+                        const cleanedResult = result.match(/\[.*\]/s)[0];
+                        state.subtemas = JSON.parse(cleanedResult);
+                    } catch (e) {
+                        state.subtemas = ["Error al generar."];
+                    }
+                }
+                renderUI();
+            },
+            getPedagogy: async function() {
+                 if (!state.temaCentral || !state.audiencia) return;
+                setLoading(ui.recommendationArea, true, 'Generando...');
+                const prompt = `Eres un experto en aprendizaje. Para el tema '${state.temaCentral}' y la audiencia '${state.audiencia}', recomienda un modelo pedagógico. Responde con un objeto JSON con "model" y "justification".`;
+                const result = await this.generate(prompt);
+                setLoading(ui.recommendationArea, false);
+                if (result) {
+                    try {
+                        const cleanedResult = result.match(/\{.*\}/s)[0];
+                        state.recommendedModel = JSON.parse(cleanedResult);
+                    } catch (e) {
+                         state.recommendedModel = { model: "Error", justification: "No se pudo generar." };
+                    }
+                }
+                renderUI();
+            },
+            analyzeQuality: async function() {
+                setLoading(ui.analysisContent, true, "Analizando...");
+                ui.analysisModal.classList.add('visible');
+                const currentPrompt = generateFinalPrompt();
+                const prompt = `Analiza la calidad de este prompt para una IA generativa. Da sugerencias para mejorarlo. Prompt a analizar:\n\n---\n\n${currentPrompt}`;
+                const result = await this.generate(prompt);
+                setLoading(ui.analysisContent, false);
+                ui.analysisContent.innerText = result || "No se pudo completar el análisis.";
+            }
+        };
+        
+        const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
+
+        function setLoading(element, isLoading, text = '') {
+            if (isLoading) {
+                element.innerHTML = `<div class="flex flex-col items-center justify-center h-full w-full text-sm text-gray-400"><div class="spinner mb-2"></div>${text}</div>`;
+            } else {
+                element.innerHTML = '';
+            }
+        }
+        
+        function populateProjectSelector() {
+            const projects = projectManager.getProjects();
+            ui.projectSelector.innerHTML = '<option value="" disabled>Selecciona un proyecto</option><option value="new">--- CREAR NUEVO PROYECTO ---</option>';
+            projects.forEach(p => {
+                const option = document.createElement('option');
+                option.value = p.id;
+                option.textContent = p.name;
+                ui.projectSelector.appendChild(option);
+            });
+        }
+        
+        function loadState(projectId) {
+            if (!projectId || projectId === "new") {
+                state = getNewState();
+            } else {
+                const projects = projectManager.getProjects();
+                state = { ...projects.find(p => p.id === projectId) } || getNewState();
+            }
+            ui.projectSelector.value = state.id;
+            renderUI();
+        }
+        
+        function renderUI() {
+            ui.archetypeRadios.forEach(r => r.checked = r.value === state.appArchetype);
+            ui.temaCentral.value = state.temaCentral;
+            ui.audiencia.value = state.audiencia;
+            ui.tono.value = state.tono;
+            ui.structureMethodRadios.forEach(r => r.checked = r.value === state.structureMethod);
+            ui.externalDocsRadios.forEach(r => r.checked = r.value === state.useExternalDocs);
+            ui.referenceMaterialInput.value = state.referenceMaterial;
+            ui.referenceMaterialSection.style.display = state.useExternalDocs === 'si' ? 'block' : 'none';
+            renderSubtopicsUI();
+            renderPedagogyUI();
+            ui.outputPrompt.value = generateFinalPrompt();
+        }
+
+        function renderSubtopicsUI() {
+            if (state.structureMethod === 'ai') {
+                ui.subtemasContainerAi.classList.remove('hidden');
+                ui.subtemasContainerManual.classList.add('hidden');
+                ui.addSubtemaBtn.classList.add('hidden');
+                if (state.subtemas.length > 0) {
+                    ui.subtemasContainerAi.innerHTML = state.subtemas.map(s => `<p class="text-gray-300">- ${s}</p>`).join('');
+                } else if(!ui.subtemasContainerAi.querySelector('.spinner')) {
+                    ui.subtemasContainerAi.innerHTML = `<p class="text-gray-500 text-sm">Define tema y audiencia.</p>`;
+                }
+            } else {
+                ui.subtemasContainerAi.classList.add('hidden');
+                ui.subtemasContainerManual.classList.remove('hidden');
+                ui.addSubtemaBtn.classList.remove('hidden');
+                ui.subtemasContainerManual.innerHTML = state.subtemas.map((subtema, index) => `<div class="flex items-center space-x-2"><input type="text" value="${subtema}" class="form-input flex-grow" data-index="${index}"><button class="btn !bg-red-800 !p-2" data-index="${index}">-</button></div>`).join('');
+            }
+        }
+
+        function renderPedagogyUI() {
+             if (state.recommendedModel && state.recommendedModel.model) {
+                ui.recommendationArea.innerHTML = `<p class="font-semibold text-violet-300">Recomendación IA: <span class="font-bold text-white">${state.recommendedModel.model}</span></p><p class="text-sm text-violet-400 mt-1">${state.recommendedModel.justification}</p>`;
+            } else if(!ui.recommendationArea.querySelector('.spinner')) {
+                ui.recommendationArea.innerHTML = `<p class="text-sm text-gray-400">Define tema y audiencia.</p>`;
+            }
+        }
+
+        function generateFinalPrompt() {
+            const archetypeData = {
+                tutorial: { name: 'Tutorial Interactivo', description: 'Enfocado en guiar al usuario paso a paso.' },
+                herramienta: { name: 'Herramienta Práctica', description: 'Enfocado en resolver un problema específico.' },
+                juego: { name: 'Juego Educativo', description: 'Enfocado en la gamificación del aprendizaje.' }
+            };
+            const selectedArchetype = archetypeData[state.appArchetype];
+            let prompt = `
+# MEGA-PROMPT v6
+## 1. CONCEPTO
+- Arquetipo: ${selectedArchetype.name}.
+- Tema: ${state.temaCentral || '(No definido)'}
+- Audiencia: ${state.audiencia || '(No definida)'}
+- Tono: ${state.tono}
+- Descripción del Arquetipo: ${selectedArchetype.description}
+
+## 2. ESTRUCTURA Y PEDAGOGÍA
+- Estructura de Contenido:
+${state.subtemas.length > 0 ? state.subtemas.map(s => `  - ${s}`).join('\n') : '  - (Generar estructura lógica)'}
+- Modelo Pedagógico: ${state.recommendedModel.model || 'No determinado'}.
+
+## 3. FUENTES
+- Material de Referencia: ${state.useExternalDocs === 'si' ? 'Sí' : 'No'}.
+${state.useExternalDocs === 'si' && state.referenceMaterial ? `
+## 4. CONTEXTO ADICIONAL
+\`\`\`
+${state.referenceMaterial}
+\`\`\`
+` : ''}
+
+## 5. REQUISITOS TÉCNICOS
+- Stack: HTML, TailwindCSS, JS, todo en un archivo.
+- No usar alert(). Usar modales.
+- Código comentado, responsivo y autocontenido.
+`;
+            return prompt.trim();
+        }
+        
+        const debouncedAiCall = debounce(() => {
+            if (state.structureMethod === 'ai' && state.temaCentral && state.audiencia) {
+                api.getSubtopics();
+                api.getPedagogy();
+            }
+        }, 1200);
+
+        ui.enterBtn.addEventListener('click', () => {
+            ui.loginScreen.style.opacity = '0';
+            setTimeout(() => {
+                ui.loginScreen.style.display = 'none';
+                ui.appContainer.classList.remove('hidden', 'invisible', 'opacity-0');
+            }, 500);
+        });
+
+        ui.projectSelector.addEventListener('change', (e) => loadState(e.target.value));
+        ui.saveBtn.addEventListener('click', () => projectManager.saveCurrentState());
+        ui.deleteBtn.addEventListener('click', () => projectManager.deleteProject(state.id));
+
+        document.body.addEventListener('input', (e) => {
+            const { id, value, type, name } = e.target;
+            if (type === 'radio') {
+                state[name] = value;
+            } else if (id === 'tema-central' || id === 'audiencia' || id === 'tono' || id === 'reference-material-input') {
+                if(id === 'reference-material-input') state.referenceMaterial = value;
+                else state[id] = value;
+            }
+            if (id === 'tema-central' || id === 'audiencia') debouncedAiCall();
+            renderUI();
+        });
+        
+        ui.addSubtemaBtn.addEventListener('click', () => { state.subtemas.push(''); renderUI(); });
+        ui.subtemasContainerManual.addEventListener('click', e => { 
+            if(e.target.matches('button')) { state.subtemas.splice(parseInt(e.target.dataset.index), 1); renderUI(); }
+        });
+        ui.subtemasContainerManual.addEventListener('input', e => { 
+            if(e.target.matches('input')) { state.subtemas[parseInt(e.target.dataset.index)] = e.target.value; renderUI(); }
+        });
+        
+        ui.copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(ui.outputPrompt.value).then(() => {
+                ui.copyBtn.textContent = '¡Copiado!';
+                setTimeout(() => { ui.copyBtn.textContent = 'Copiar Prompt'; }, 2000);
+            });
+        });
+        
+        ui.analyzeBtn.addEventListener('click', () => api.analyzeQuality());
+        ui.closeModalBtn.addEventListener('click', () => ui.analysisModal.classList.remove('visible'));
+
+        function init() {
+            populateProjectSelector();
+            const projects = projectManager.getProjects();
+            const firstProjectId = projects.length > 0 ? projects[0].id : "new";
+            loadState(firstProjectId);
+        }
+
+        init();
+    </script>
 </body>
 </html>
 
