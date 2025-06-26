@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Architect v6</title>
+    <!-- Tailwind CSS y Fuentes se mantienen igual -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS VISUALES SIN CAMBIOS --- */
+        :root {
+            --bg-dark: #111827;
+            --bg-light: #1f2937;
+            --border-color: #374151;
+            --text-main: #d1d5db;
+            --text-light: #9ca3af;
+            --violet-glow: #a78bfa;
+            --violet-bright: #c4b5fd;
+            --violet-dark: #7c3aed;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .app-wrapper { position: relative; z-index: 1; }
+        .form-section { background-color: rgba(31, 41, 55, 0.8); backdrop-filter: blur(10px); border-radius: 0.75rem; padding: 1.5rem; border: 1px solid var(--border-color); margin-bottom: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .form-section:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(167, 139, 250, 0.1); }
+        .form-section h2 { font-size: 1.25rem; font-weight: 600; color: white; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; }
+        .form-label { display: block; font-weight: 500; color: var(--text-light); margin-bottom: 0.5rem; }
+        .form-input, .form-select, .form-textarea { width: 100%; border-radius: 0.5rem; border: 1px solid var(--border-color); padding: 0.75rem; background-color: var(--bg-dark); color: var(--text-main); transition: border-color 0.2s, box-shadow 0.2s; }
+        .form-input::placeholder { color: var(--text-light); }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--violet-glow); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3); }
+        .btn { padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; border: none; }
+        .btn:disabled { cursor: not-allowed; background-color: #374151; opacity: 0.6; }
+        .btn-primary { background-color: var(--violet-dark); color: white; box-shadow: 0 0 15px rgba(167, 139, 250, 0.3); }
+        .btn-primary:hover:not(:disabled) { background-color: #6d28d9; box-shadow: 0 0 25px rgba(167, 139, 250, 0.5); }
+        .neon-text { color: white; text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px var(--violet-glow), 0 0 82px var(--violet-glow), 0 0 92px var(--violet-glow), 0 0 102px var(--violet-glow), 0 0 151px var(--violet-glow); }
+        .radio-label { display: flex; align-items: center; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border-color); cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
+        .radio-label:has(input:checked) { background-color: rgba(167, 139, 250, 0.1); border-color: var(--violet-glow); }
+        .spinner { border: 2px solid var(--border-color); border-top-color: var(--violet-bright); border-radius: 50%; width: 1rem; height: 1rem; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        /* --- ESTILOS PARA NUEVOS ELEMENTOS --- */
+        #project-management { display: flex; align-items: center; gap: 0.75rem; background-color: rgba(31, 41, 55, 0.5); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid var(--border-color); }
+        #analysis-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 50; backdrop-filter: blur(5px); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+        #analysis-modal.visible { opacity: 1; visibility: visible; }
+    </style>
+</head>
+<body>
+    <canvas id="particles-js"></canvas>
+
+    <!-- Modal para análisis de calidad -->
+    <div id="analysis-modal">
+        <div class="bg-light w-11/12 max-w-2xl p-6 rounded-lg border border-border-color shadow-2xl">
+            <h3 class="text-xl font-bold text-white mb-4">Análisis de Calidad del Prompt</h3>
+            <div id="analysis-content" class="text-text-main bg-dark p-4 rounded-md min-h-[150px] whitespace-pre-wrap"></div>
+            <button id="close-modal-btn" class="btn btn-primary w-full mt-6">Cerrar</button>
+        </div>
+    </div>
+    
+    <!-- La pantalla de login se mantiene igual -->
+    <div id="login-screen" class="app-wrapper flex flex-col justify-center items-center text-center w-screen h-screen transition-opacity duration-500 ease-out bg-bg-dark z-10">
+        <!-- ... contenido de login screen sin cambios ... -->
+         <h1 class="text-5xl lg:text-7xl font-black neon-text tracking-wider">PROMPT ARCHITECT</h1>
+         <p class="text-gray-400 mt-4 text-lg">La herramienta profesional para construir prompts de aplicaciones.</p>
+         <button id="enter-btn" class="btn btn-primary mt-8 text-lg">Comenzar</button>
+    </div>
+
+    <div id="app-container" class="app-wrapper p-4 lg:p-8 opacity-0 invisible hidden transition-opacity duration-500">
+        <header class="text-center mb-8">
+            <div class="flex justify-center items-center gap-4">
+                <h1 class="text-3xl lg:text-5xl font-black neon-text tracking-wider">PROMPT ARCHITECT</h1>
+            </div>
+            <!-- NUEVA SECCIÓN DE GESTIÓN DE PROYECTOS -->
+            <div id="project-management" class="max-w-xl mx-auto mt-4">
+                 <label for="project-selector" class="text-sm font-medium text-text-light whitespace-nowrap">Cargar Proyecto:</label>
+                 <select id="project-selector" class="form-select !py-1 flex-grow"></select>
+                 <button id="save-btn" class="btn btn-primary !py-1.5 !px-4">Guardar</button>
+                 <button id="delete-btn" class="btn bg-red-800 hover:bg-red-700 !py-1.5 !px-4 text-white">Borrar</button>
+            </div>
+        </header>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Columna de Formularios -->
+                <div>
+                    <!-- Los pasos y formularios se mantienen en su mayoría, con cambios en la funcionalidad JS -->
+                    <!-- ... Arquetipo, Alcance, Definición ... -->
+
+                    <!-- SECCIÓN DE ESTRUCTURA MEJORADA -->
+                    <div class="form-section">
+                        <h2><span class="text-violet-400 font-bold">Paso 3:</span> Estructura el Contenido</h2>
+                        <label class="form-label">D. Método de Estructura</label>
+                        <div class="flex gap-4 mb-4">
+                             <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="ai" checked class="mr-3"><span class="font-medium text-white">Recomendada por IA</span></label>
+                             <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="manual" class="mr-3"><span class="font-medium text-white">Manual</span></label>
+                        </div>
+                        <!-- El contenedor de la IA ahora mostrará un spinner -->
+                        <div id="subtemas-container-ai" class="flex items-center justify-center space-y-2 p-3 bg-gray-900/50 rounded-md border border-dashed border-gray-600 min-h-[100px]"></div>
+                        <div id="subtemas-container-manual" class="space-y-3 hidden"></div>
+                        <button id="add-subtema-btn" class="btn btn-primary mt-3 hidden">Añadir Subtema</button>
+                    </div>
+
+                    <!-- SECCIÓN DE PEDAGOGÍA Y FUENTES MEJORADA -->
+                    <div class="form-section">
+                        <h2><span class="text-violet-400 font-bold">Paso 4:</span> Define la Pedagogía y Fuentes</h2>
+                        <div id="pedagogy-section">
+                            <label class="form-label">E. Modelo Pedagógico</label>
+                            <!-- El área de recomendación ahora mostrará un spinner -->
+                            <div id="recommendation-area" class="flex items-center justify-center border border-violet-800 bg-violet-900/20 p-4 rounded-md min-h-[70px]"></div>
+                        </div>
+                        <div class="mt-6">
+                            <label class="form-label">F. ¿Usarás material de referencia propio?</label>
+                            <div class="flex gap-4">
+                                 <label class="radio-label flex-1"><input type="radio" name="useExternalDocs" value="no" checked class="mr-3"><span class="font-medium text-white">No</span></label>
+                                 <label class="radio-label flex-1"><input type="radio" name="useExternalDocs" value="si" class="mr-3"><span class="font-medium text-white">Sí</span></label>
+                            </div>
+                            <!-- SECCIÓN ACTIVADA: TEXTAREA PARA REFERENCIA -->
+                            <div id="reference-material-section" class="mt-4 hidden">
+                                <label for="reference-material-input" class="form-label">Pega aquí tu material de referencia:</label>
+                                <textarea id="reference-material-input" class="form-textarea" rows="5" placeholder="Pega texto, notas, o un resumen de tu documento..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna de Output -->
+                <div class="sticky top-8 self-start">
+                     <div class="form-section !bg-opacity-90">
+                         <h2 class="!mb-4">Prompt Generado</h2>
+                        <textarea id="output-prompt" rows="28" class="form-textarea bg-gray-900 font-mono text-sm" readonly></textarea>
+                         <div class="flex gap-4 mt-4">
+                            <button id="copy-btn" class="btn btn-primary w-full">Copiar Prompt</button>
+                            <!-- NUEVO BOTÓN DE ANÁLISIS -->
+                            <button id="analyze-btn" class="btn btn-secondary w-full">Analizar Calidad</button>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- El script principal se cargará externamente para mayor claridad -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+
