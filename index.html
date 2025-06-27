@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt Architect v7</title>
+    <title>Prompt Architect v5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,61 +19,220 @@
             --violet-bright: #c4b5fd;
             --violet-dark: #7c3aed;
         }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
-        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-        .app-wrapper { position: relative; z-index: 1; }
-        .form-section { background-color: rgba(31, 41, 55, 0.8); backdrop-filter: blur(10px); border-radius: 0.75rem; padding: 1.5rem; border: 1px solid var(--border-color); margin-bottom: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .form-section:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(167, 139, 250, 0.1); }
-        .form-section h2 { font-size: 1.25rem; font-weight: 600; color: white; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; }
-        .form-label { display: block; font-weight: 500; color: var(--text-light); margin-bottom: 0.5rem; }
-        .form-input, .form-select, .form-textarea { width: 100%; border-radius: 0.5rem; border: 1px solid var(--border-color); padding: 0.75rem; background-color: var(--bg-dark); color: var(--text-main); transition: border-color 0.2s, box-shadow 0.2s; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .app-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .form-section {
+            background-color: rgba(31, 41, 55, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.1);
+        }
+        .form-section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
         .form-input::placeholder { color: var(--text-light); }
-        .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--violet-glow); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3); }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; border: none; }
-        .btn:disabled { cursor: not-allowed; background-color: #374151; opacity: 0.6; }
-        .btn-primary { background-color: var(--violet-dark); color: white; box-shadow: 0 0 15px rgba(167, 139, 250, 0.3); }
-        .btn-primary:hover:not(:disabled) { background-color: #6d28d9; box-shadow: 0 0 25px rgba(167, 139, 250, 0.5); }
-        .neon-text { color: white; text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px var(--violet-glow), 0 0 82px var(--violet-glow), 0 0 92px var(--violet-glow), 0 0 102px var(--violet-glow), 0 0 151px var(--violet-glow); }
-        .radio-label { display: flex; align-items: center; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border-color); cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
-        .radio-label:has(input:checked) { background-color: rgba(167, 139, 250, 0.1); border-color: var(--violet-glow); }
-        .spinner { border: 2px solid var(--border-color); border-top-color: var(--violet-bright); border-radius: 50%; width: 1rem; height: 1rem; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        #project-management { display: flex; align-items: center; gap: 0.75rem; background-color: rgba(31, 41, 55, 0.5); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid var(--border-color); }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--violet-glow);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        .btn:active { transform: scale(0.95); }
+        .btn-primary {
+            background-color: var(--violet-dark);
+            color: white;
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
+        }
+        .btn-primary:hover { 
+            background-color: #6d28d9; 
+            box-shadow: 0 0 25px rgba(167, 139, 250, 0.5);
+        }
+        .btn-secondary {
+            background-color: var(--border-color);
+            color: var(--text-main);
+        }
+        .btn-secondary:hover { background-color: #4b5563; }
+        .neon-text {
+            color: white;
+            text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px var(--violet-glow), 0 0 82px var(--violet-glow), 0 0 92px var(--violet-glow), 0 0 102px var(--violet-glow), 0 0 151px var(--violet-glow);
+        }
+         .radio-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .radio-label:has(input:checked) {
+            background-color: rgba(167, 139, 250, 0.1);
+            border-color: var(--violet-glow);
+        }
+        .radio-label input {
+            accent-color: var(--violet-dark);
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 5px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--violet-bright);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid var(--bg-light);
+            transition: background-color 0.2s;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--violet-bright);
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid var(--bg-light);
+        }
+        input[type="range"]:hover::-webkit-slider-thumb {
+            background-color: var(--violet-glow);
+        }
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: opacity 0.5s ease-out;
+            background-color: var(--bg-dark);
+            z-index: 10;
+        }
+        #app-container {
+            transition: opacity 0.8s ease-in;
+            opacity: 0;
+            visibility: hidden;
+            display: none; /* Inicia oculto */
+        }
+        #app-container.visible {
+            opacity: 1;
+            visibility: visible;
+            display: block; /* Muestra al hacerse visible */
+        }
     </style>
 </head>
 <body>
     <canvas id="particles-js"></canvas>
     
-    <div id="login-screen" class="app-wrapper flex flex-col justify-center items-center text-center w-screen h-screen transition-opacity duration-500 ease-out bg-bg-dark z-10">
-         <h1 class="text-5xl lg:text-7xl font-black neon-text tracking-wider">PROMPT ARCHITECT</h1>
-         <p class="text-gray-400 mt-4 text-lg">La herramienta profesional para construir prompts de aplicaciones.</p>
-         <button id="enter-btn" class="btn btn-primary mt-8 text-lg">Comenzar</button>
+    <div id="login-screen" class="app-wrapper">
+         <div class="flex justify-center items-center gap-4">
+             <svg class="w-16 h-16 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="filter: drop-shadow(0 0 8px var(--violet-glow));">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.25 6.087c0-.66.537-1.197 1.197-1.197h.006c.66 0 1.197.537 1.197 1.197v11.826c0 .66-.537 1.197-1.197 1.197h-.006c-.66 0-1.197-.537-1.197-1.197V6.087zM8.498 6.087c0-.66.537-1.197 1.197-1.197h.006c.66 0 1.197.537 1.197 1.197v11.826c0 .66-.537 1.197-1.197 1.197h-.006c-.66 0-1.197-.537-1.197-1.197V6.087zM4.125 12c0-.66.537-1.197 1.197-1.197h.006c.66 0 1.197.537 1.197 1.197v5.913c0 .66-.537 1.197-1.197 1.197h-.006c-.66 0-1.197-.537-1.197-1.197V12z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4.5h18M3 20.25h18"/>
+            </svg>
+            <h1 class="text-5xl lg:text-7xl font-black neon-text tracking-wider">PROMPT ARCHITECT</h1>
+        </div>
+        <p class="text-gray-400 mt-4 text-lg">Comienza a generar tu mega-prompt para tu app</p>
+        <button id="enter-btn" class="btn btn-primary mt-8 text-lg">Comenzar</button>
     </div>
 
-    <div id="app-container" class="app-wrapper p-4 lg:p-8 opacity-0 invisible hidden transition-opacity duration-500">
+    <div id="app-container" class="app-wrapper p-4 lg:p-8">
         <header class="text-center mb-8">
             <div class="flex justify-center items-center gap-4">
+                 <svg class="w-12 h-12 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="filter: drop-shadow(0 0 8px var(--violet-glow));">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.25 6.087c0-.66.537-1.197 1.197-1.197h.006c.66 0 1.197.537 1.197 1.197v11.826c0 .66-.537 1.197-1.197 1.197h-.006c-.66 0-1.197-.537-1.197-1.197V6.087zM8.498 6.087c0-.66.537-1.197 1.197-1.197h.006c.66 0 1.197.537 1.197 1.197v11.826c0 .66-.537 1.197-1.197 1.197h-.006c-.66 0-1.197-.537-1.197-1.197V6.087zM4.125 12c0-.66.537-1.197 1.197-1.197h.006c.66 0 1.197.537 1.197 1.197v5.913c0 .66-.537 1.197-1.197 1.197h-.006c-.66 0-1.197-.537-1.197-1.197V12z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4.5h18M3 20.25h18"/>
+                </svg>
                 <h1 class="text-3xl lg:text-5xl font-black neon-text tracking-wider">PROMPT ARCHITECT</h1>
-            </div>
-            <div id="project-management" class="max-w-xl mx-auto mt-4">
-                 <label for="project-selector" class="text-sm font-medium text-text-light whitespace-nowrap">Cargar Proyecto:</label>
-                 <select id="project-selector" class="form-select !py-1 flex-grow"></select>
-                 <button id="save-btn" class="btn btn-primary !py-1.5 !px-4">Guardar</button>
-                 <button id="delete-btn" class="btn bg-red-800 hover:bg-red-700 !py-1.5 !px-4 text-white">Borrar</button>
             </div>
         </header>
         
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Columna de Formularios -->
                 <div>
-                    <div class="form-section">
-                        <h2><span class="text-violet-400 font-bold">Paso 1:</span> Elige el Arquetipo de App</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <label class="radio-label"><input type="radio" name="appArchetype" value="tutorial" class="mr-3"><div><span class="font-medium text-white">Tutorial</span></div></label>
-                            <label class="radio-label"><input type="radio" name="appArchetype" value="herramienta" class="mr-3"><div><span class="font-medium text-white">Herramienta</span></div></label>
-                            <label class="radio-label"><input type="radio" name="appArchetype" value="juego" class="mr-3"><div><span class="font-medium text-white">Juego</span></div></label>
+                     <div class="form-section">
+                        <h2><span class="text-violet-400 font-bold">Paso 1:</span> Define el Alcance</h2>
+                        <div>
+                            <label class="form-label">Complejidad de la App (Funcionalidades)</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <label class="radio-label"><input type="radio" name="appComplexity" value="Simple" class="mr-3"><div><span class="font-medium text-white">Simple</span><p class="text-xs text-gray-400">Contenido básico</p></div></label>
+                                <label class="radio-label"><input type="radio" name="appComplexity" value="Intermedia" checked class="mr-3"><div><span class="font-medium text-white">Intermedia</span><p class="text-xs text-gray-400">Con IA y ejemplos</p></div></label>
+                                <label class="radio-label"><input type="radio" name="appComplexity" value="Avanzada" class="mr-3"><div><span class="font-medium text-white">Avanzada</span><p class="text-xs text-gray-400">Gamificación</p></div></label>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label for="content-depth" class="form-label">Profundidad del Contenido (Volumen)</label>
+                            <input type="range" id="content-depth" min="1" max="3" value="2" class="w-full">
+                            <div class="flex justify-between text-xs text-gray-400 mt-2">
+                                <span>Breve</span>
+                                <span>Estándar</span>
+                                <span>Extenso</span>
+                            </div>
                         </div>
                     </div>
+
                     <div class="form-section">
                         <h2><span class="text-violet-400 font-bold">Paso 2:</span> Define tu Aplicación</h2>
                         <div>
@@ -90,426 +249,324 @@
                                 <option value="Profesional y claro">Profesional y claro</option>
                                 <option value="Lúdico e infantil">Lúdico e infantil</option>
                                 <option value="Futurista y neón">Futurista y neón</option>
+                                <option value="Inspirador y creativo">Inspirador y creativo</option>
+                                <option value="Minimalista y directo">Minimalista y directo</option>
                             </select>
                         </div>
                     </div>
+
                     <div class="form-section">
                         <h2><span class="text-violet-400 font-bold">Paso 3:</span> Estructura el Contenido</h2>
-                        <label class="form-label">D. Método de Estructura</label>
-                        <div class="flex gap-4 mb-4">
-                             <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="ai" class="mr-3"><span class="font-medium text-white">Recomendada por IA</span></label>
-                             <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="manual" class="mr-3"><span class="font-medium text-white">Manual</span></label>
+                         <div>
+                            <label class="form-label">D. Método de Estructura</label>
+                            <div class="flex gap-4 mb-4">
+                                <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="ai" checked class="mr-3"><span class="font-medium text-white">Recomendada por IA</span></label>
+                                <label class="radio-label flex-1"><input type="radio" name="structureMethod" value="manual" class="mr-3"><span class="font-medium text-white">Manual</span></label>
+                            </div>
+                            <div id="subtemas-container-ai" class="space-y-2 p-3 bg-gray-900/50 rounded-md border border-dashed border-gray-600 min-h-[100px]">
+                            </div>
+                            <div id="subtemas-container-manual" class="space-y-3 hidden">
+                            </div>
+                            <button id="add-subtema-btn" class="btn btn-primary mt-3 hidden">Añadir Subtema</button>
                         </div>
-                        <div id="subtemas-container-ai" class="flex items-center justify-center space-y-2 p-3 bg-gray-900/50 rounded-md border border-dashed border-gray-600 min-h-[100px]"></div>
-                        <div id="subtemas-container-manual" class="space-y-3 hidden"></div>
-                        <button id="add-subtema-btn" class="btn btn-primary mt-3 hidden">Añadir Subtema</button>
                     </div>
-                    <div class="form-section">
+
+                     <div class="form-section">
                         <h2><span class="text-violet-400 font-bold">Paso 4:</span> Define la Pedagogía y Fuentes</h2>
                         <div id="pedagogy-section">
                             <label class="form-label">E. Modelo Pedagógico</label>
-                            <div id="recommendation-area" class="flex items-center justify-center border border-violet-800 bg-violet-900/20 p-4 rounded-md min-h-[70px]"></div>
+                            <div id="recommendation-area" class="border border-violet-800 bg-violet-900/20 p-4 rounded-md min-h-[70px]"></div>
+                            <div class="mt-4">
+                                <label for="manual-pedagogy" class="form-label">O, selecciona un modelo manualmente:</label>
+                                <select id="manual-pedagogy" class="form-select">
+                                    <option value="">Usar modelo recomendado por la IA</option>
+                                    <option value="Instrucción Directa">Instrucción Directa (para bases teóricas)</option>
+                                    <option value="Aprendizaje Basado en Proyectos">Aprendizaje Basado en Proyectos (para crear/construir)</option>
+                                    <option value="Aprendizaje Basado en Problemas">Aprendizaje Basado en Problemas (para analizar/diagnosticar)</option>
+                                    <option value="Recuperación Activa">Recuperación Activa (para memorizar y retener)</option>
+                                    <option value="Aprendizaje Generativo">Aprendizaje Generativo (para resumir y explicar)</option>
+                                    <option value="Aprendizaje Espaciado">Aprendizaje Espaciado (para retención a largo plazo)</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="mt-6">
-                            <label class="form-label">F. ¿Usarás material de referencia propio?</label>
+                         <div class="mt-6">
+                            <label class="form-label">F. ¿Usarás material de referencia propio (PDF, Docs)?</label>
                             <div class="flex gap-4">
-                                 <label class="radio-label flex-1"><input type="radio" name="useExternalDocs" value="no" class="mr-3"><span class="font-medium text-white">No</span></label>
+                                 <label class="radio-label flex-1"><input type="radio" name="useExternalDocs" value="no" checked class="mr-3"><span class="font-medium text-white">No</span></label>
                                  <label class="radio-label flex-1"><input type="radio" name="useExternalDocs" value="si" class="mr-3"><span class="font-medium text-white">Sí</span></label>
                             </div>
-                            <div id="reference-material-section" class="mt-4 hidden">
-                                <label for="reference-material-input" class="form-label">Pega aquí tu material de referencia:</label>
-                                <textarea id="reference-material-input" class="form-textarea" rows="5" placeholder="Pega texto, notas, o un resumen de tu documento..."></textarea>
+                            <div id="source-strategy-section" class="mt-4 hidden">
+                                 <label class="form-label">Estrategia de Contenido:</label>
+                                 <div class="space-y-2">
+                                    <label class="radio-label"><input type="radio" name="sourceStrategy" value="docs_and_ai" class="mr-3"><div><span class="font-medium text-white">Híbrido:</span><p class="text-xs text-gray-400">Usar mis documentos y complementar con la IA.</p></div></label>
+                                     <label class="radio-label"><input type="radio" name="sourceStrategy" value="docs_only" class="mr-3"><div><span class="font-medium text-white">Exclusivo:</span><p class="text-xs text-gray-400">Basarse únicamente en mis documentos.</p></div></label>
+                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Columna de Output -->
                 <div class="sticky top-8 self-start">
-                     <div class="form-section bg-opacity-90">
+                     <div class="form-section !bg-opacity-90">
                          <h2 class="!mb-4">Prompt Generado</h2>
-                        <textarea id="output-prompt" rows="28" class="form-textarea bg-gray-900 font-mono text-sm" readonly></textarea>
-                         <div class="flex gap-4 mt-4">
-                            <button id="copy-btn" class="btn btn-primary w-full">Copiar Prompt</button>
-                            <button id="improve-btn" class="btn btn-secondary w-full">
-                                <span id="improve-btn-text">Mejorar con IA</span>
-                                <div id="improve-spinner" class="spinner hidden"></div>
-                            </button>
-                         </div>
+                        <textarea id="output-prompt" rows="25" class="form-textarea bg-gray-900 font-mono text-sm" readonly></textarea>
+                         <button id="copy-btn" class="btn btn-primary w-full mt-4">Copiar Prompt</button>
                      </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script type="module">
-        // --- SCRIPT INTEGRADO DIRECTAMENTE EN EL HTML ---
 
-        // --- ANIMACIÓN DE PARTÍCULAS (SIN CAMBIOS) ---
-        const particlesCanvas = document.getElementById('particles-js');
-        if (particlesCanvas) {
-            const ctx = particlesCanvas.getContext('2d');
-            particlesCanvas.width = window.innerWidth;
-            particlesCanvas.height = window.innerHeight;
-            let neurons = [];
-            const connectionDistance = 200;
-            const pulseSpeed = 0.05;
-            class Neuron {
-                constructor(x, y) { this.x = x; this.y = y; this.radius = Math.random() * 2 + 1; this.color = `rgba(167, 139, 250, ${Math.random() * 0.5 + 0.2})`; this.connections = []; }
-                draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); }
+    <script>
+        // --- Neural Network Animation Script ---
+        const canvas = document.getElementById('particles-js');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let neurons = [];
+        const connectionDistance = 200;
+        const pulseSpeed = 0.05;
+        class Neuron {
+            constructor(x, y) { this.x = x; this.y = y; this.radius = Math.random() * 2 + 1; this.color = `rgba(167, 139, 250, ${Math.random() * 0.5 + 0.2})`; this.connections = []; }
+            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); }
+        }
+        class Connection {
+            constructor(from, to) { this.from = from; this.to = to; this.pulsePosition = Math.random(); this.pulseDirection = Math.random() > 0.5 ? 1 : -1; }
+            draw() {
+                ctx.beginPath(); ctx.moveTo(this.from.x, this.from.y); ctx.lineTo(this.to.x, this.to.y); ctx.strokeStyle = `rgba(196, 181, 253, 0.1)`; ctx.stroke();
+                const pulseX = this.from.x + (this.to.x - this.from.x) * this.pulsePosition; const pulseY = this.from.y + (this.to.y - this.from.y) * this.pulsePosition;
+                ctx.beginPath(); ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2); ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; ctx.fill();
             }
-            class Connection {
-                constructor(from, to) { this.from = from; this.to = to; this.pulsePosition = Math.random(); this.pulseDirection = Math.random() > 0.5 ? 1 : -1; }
-                draw() {
-                    ctx.beginPath(); ctx.moveTo(this.from.x, this.from.y); ctx.lineTo(this.to.x, this.to.y); ctx.strokeStyle = `rgba(196, 181, 253, 0.1)`; ctx.stroke();
-                    const pulseX = this.from.x + (this.to.x - this.from.x) * this.pulsePosition; const pulseY = this.from.y + (this.to.y - this.from.y) * this.pulsePosition;
-                    ctx.beginPath(); ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2); ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; ctx.fill();
+            update() { this.pulsePosition += pulseSpeed * this.pulseDirection; if (this.pulsePosition > 1 || this.pulsePosition < 0) { this.pulseDirection *= -1; } this.draw(); }
+        }
+        function initNeurons() {
+            neurons = []; let numberOfNeurons = (canvas.width * canvas.height) / 12000;
+            for (let i = 0; i < numberOfNeurons; i++) { neurons.push(new Neuron(Math.random() * canvas.width, Math.random() * canvas.height)); }
+            for (let i = 0; i < neurons.length; i++) {
+                for (let j = i + 1; j < neurons.length; j++) {
+                    const dx = neurons[i].x - neurons[j].x; const dy = neurons[i].y - neurons[j].y; const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < connectionDistance) { neurons[i].connections.push(new Connection(neurons[i], neurons[j])); }
                 }
-                update() { this.pulsePosition += pulseSpeed * this.pulseDirection; if (this.pulsePosition > 1 || this.pulsePosition < 0) { this.pulseDirection *= -1; } this.draw(); }
             }
-            function initNeurons() {
-                neurons = []; let numberOfNeurons = (particlesCanvas.width * particlesCanvas.height) / 12000;
-                for (let i = 0; i < numberOfNeurons; i++) { neurons.push(new Neuron(Math.random() * particlesCanvas.width, Math.random() * particlesCanvas.height)); }
-                for (let i = 0; i < neurons.length; i++) {
-                    for (let j = i + 1; j < neurons.length; j++) {
-                        const dx = neurons[i].x - neurons[j].x; const dy = neurons[i].y - neurons[j].y; const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < connectionDistance) { neurons[i].connections.push(new Connection(neurons[i], neurons[j])); }
-                    }
-                }
-            }
-            function animateNetwork() { requestAnimationFrame(animateNetwork); ctx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height); for (const neuron of neurons) { neuron.draw(); for (const connection of neuron.connections) { connection.update(); } } }
-            window.addEventListener('resize', () => { particlesCanvas.width = window.innerWidth; particlesCanvas.height = window.innerHeight; initNeurons(); });
+        }
+        function animateNetwork() {
+            requestAnimationFrame(animateNetwork); ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const neuron of neurons) { neuron.draw(); for (const connection of neuron.connections) { connection.update(); } }
+        }
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initNeurons(); });
+        
+        document.addEventListener('DOMContentLoaded', () => {
             initNeurons();
             animateNetwork();
-        }
-
-        // --- INICIO DE LA LÓGICA DE LA APLICACIÓN ---
-        
-        const ui = {
-            loginScreen: document.getElementById('login-screen'),
-            appContainer: document.getElementById('app-container'),
-            enterBtn: document.getElementById('enter-btn'),
-            projectSelector: document.getElementById('project-selector'),
-            saveBtn: document.getElementById('save-btn'),
-            deleteBtn: document.getElementById('delete-btn'),
-            archetypeRadios: document.querySelectorAll('input[name="appArchetype"]'),
-            temaCentral: document.getElementById('tema-central'),
-            audiencia: document.getElementById('audiencia'),
-            tono: document.getElementById('tono'),
-            structureMethodRadios: document.querySelectorAll('input[name="structureMethod"]'),
-            subtemasContainerAi: document.getElementById('subtemas-container-ai'),
-            subtemasContainerManual: document.getElementById('subtemas-container-manual'),
-            addSubtemaBtn: document.getElementById('add-subtema-btn'),
-            recommendationArea: document.getElementById('recommendation-area'),
-            externalDocsRadios: document.querySelectorAll('input[name="useExternalDocs"]'),
-            referenceMaterialSection: document.getElementById('reference-material-section'),
-            referenceMaterialInput: document.getElementById('reference-material-input'),
-            outputPrompt: document.getElementById('output-prompt'),
-            copyBtn: document.getElementById('copy-btn'),
-            improveBtn: document.getElementById('improve-btn'),
-            improveBtnText: document.getElementById('improve-btn-text'),
-            improveSpinner: document.getElementById('improve-spinner'),
-        };
-
-        let state = {};
-        const getNewState = () => ({
-            id: `proj_${Date.now()}`,
-            name: "Nuevo Proyecto Sin Título",
-            lastModified: new Date().toISOString(),
-            appArchetype: 'tutorial',
-            temaCentral: '',
-            audiencia: '',
-            tono: 'Lúdico e infantil',
-            structureMethod: 'ai',
-            subtemas: [],
-            recommendedModel: {},
-            useExternalDocs: 'no',
-            referenceMaterial: '',
-        });
-
-        const projectManager = {
-            storageKey: 'promptArchitectProjects',
-            getProjects: function() {
-                try {
-                    const projects = localStorage.getItem(this.storageKey);
-                    return projects ? JSON.parse(projects) : this.getInitialTemplates();
-                } catch (e) {
-                    return this.getInitialTemplates();
-                }
-            },
-            saveProjects: function(projects) {
-                localStorage.setItem(this.storageKey, JSON.stringify(projects));
-            },
-            saveCurrentState: function() {
-                const projectName = prompt("Guardar proyecto como:", state.name);
-                if (!projectName) return;
-                state.name = projectName;
-                state.lastModified = new Date().toISOString();
-                let projects = this.getProjects();
-                const projectIndex = projects.findIndex(p => p.id === state.id);
-                if (projectIndex > -1) {
-                    projects[projectIndex] = state;
-                } else {
-                    projects.push(state);
-                }
-                this.saveProjects(projects);
-                populateProjectSelector();
-                ui.projectSelector.value = state.id;
-                alert("Proyecto guardado!");
-            },
-            deleteProject: function(projectId) {
-                if (!confirm("¿Borrar este proyecto?")) return;
-                let projects = this.getProjects();
-                const updatedProjects = projects.filter(p => p.id !== projectId);
-                this.saveProjects(updatedProjects);
-                loadState();
-            },
-            getInitialTemplates: function() {
-                return [
-                    { id: `proj_tpl_1`, name: "Plantilla: Curso de Python", lastModified: new Date().toISOString(), appArchetype: 'tutorial', temaCentral: 'Introducción a Python para principiantes', audiencia: 'Estudiantes sin experiencia en programación', tono: 'Profesional y claro', structureMethod: 'ai', subtemas: [], recommendedModel: {}, useExternalDocs: 'no', referenceMaterial: '' },
-                    { id: `proj_tpl_2`, name: "Plantilla: Juego del Sistema Solar", lastModified: new Date().toISOString(), appArchetype: 'juego', temaCentral: 'Exploración del Sistema Solar', audiencia: 'Niños de 8 a 12 años', tono: 'Lúdico e infantil', structureMethod: 'ai', subtemas: [], recommendedModel: {}, useExternalDocs: 'no', referenceMaterial: '' },
-                ];
-            }
-        };
-
-        const api = {
-            generate: async function(prompt) {
-                try {
-                    const response = await fetch('/api/generate', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt })
-                    });
-                    if (!response.ok) {
-                        const errorBody = await response.json().catch(() => ({ error: 'No se pudo leer el cuerpo del error.' }));
-                        throw new Error(`Error del servidor (${response.status}): ${errorBody.error || response.statusText}`);
-                    }
-                    const data = await response.json();
-                    return data.text;
-                } catch (error) {
-                    alert(`Error: No se pudo comunicar con la IA.\n\nDetalles: ${error.message}\n\nPor favor, verifica que la clave de API esté bien configurada en Vercel.`);
-                    return null;
-                }
-            },
-            getSubtopics: async function() {
-                if (!state.temaCentral || !state.audiencia) return;
-                setLoading(ui.subtemasContainerAi, true, 'Generando...');
-                const prompt = `Eres un diseñador instruccional. Para el tema '${state.temaCentral}' y la audiencia '${state.audiencia}', genera un array JSON con 4 subtemas. Responde solo con el array.`;
-                const result = await this.generate(prompt);
-                setLoading(ui.subtemasContainerAi, false);
-                if (result) {
-                    try {
-                        const cleanedResult = result.match(/\[.*\]/s)[0];
-                        state.subtemas = JSON.parse(cleanedResult);
-                    } catch (e) {
-                        state.subtemas = ["Error al procesar la respuesta."];
-                    }
-                }
-                renderUI();
-            },
-            getPedagogy: async function() {
-                 if (!state.temaCentral || !state.audiencia) return;
-                setLoading(ui.recommendationArea, true, 'Generando...');
-                const prompt = `Eres un experto en aprendizaje. Para el tema '${state.temaCentral}' y la audiencia '${state.audiencia}', recomienda un modelo pedagógico. Responde con un objeto JSON con "model" y "justification".`;
-                const result = await this.generate(prompt);
-                setLoading(ui.recommendationArea, false);
-                if (result) {
-                    try {
-                        const cleanedResult = result.match(/\{.*\}/s)[0];
-                        state.recommendedModel = JSON.parse(cleanedResult);
-                    } catch (e) {
-                         state.recommendedModel = { model: "Error", justification: "No se pudo procesar la respuesta." };
-                    }
-                }
-                renderUI();
-            },
-            improvePrompt: async function() {
-                ui.improveBtn.disabled = true;
-                ui.improveBtnText.textContent = 'Mejorando...';
-                ui.improveSpinner.classList.remove('hidden');
-
-                const currentPrompt = generateFinalPrompt();
-                const prompt = `Actúa como un experto en ingeniería de prompts. Toma el siguiente prompt y reescríbelo para que sea más claro, específico y efectivo. No añadas explicaciones, solo devuelve el prompt mejorado. Prompt a mejorar:\n\n---\n\n${currentPrompt}`;
-                
-                const result = await this.generate(prompt);
-                
-                if (result) {
-                    ui.outputPrompt.value = result;
-                }
-
-                ui.improveBtn.disabled = false;
-                ui.improveBtnText.textContent = 'Mejorar con IA';
-                ui.improveSpinner.classList.add('hidden');
-            }
-        };
-        
-        const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
-
-        function setLoading(element, isLoading, text = '') {
-            if (isLoading) {
-                element.innerHTML = `<div class="flex flex-col items-center justify-center h-full w-full text-sm text-gray-400"><div class="spinner mb-2"></div>${text}</div>`;
-            } else {
-                element.innerHTML = '';
-            }
-        }
-        
-        function populateProjectSelector() {
-            const projects = projectManager.getProjects();
-            ui.projectSelector.innerHTML = '<option value="" disabled>Selecciona un proyecto</option><option value="new">--- CREAR NUEVO PROYECTO ---</option>';
-            projects.forEach(p => {
-                const option = document.createElement('option');
-                option.value = p.id;
-                option.textContent = p.name;
-                ui.projectSelector.appendChild(option);
+            
+            const loginScreen = document.getElementById('login-screen');
+            const appContainer = document.getElementById('app-container');
+            const enterBtn = document.getElementById('enter-btn');
+            enterBtn.addEventListener('click', () => {
+                loginScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loginScreen.style.display = 'none';
+                    appContainer.classList.add('visible');
+                }, 500);
             });
-        }
-        
-        function loadState(projectId) {
-            if (!projectId || projectId === "new") {
-                state = getNewState();
-            } else {
-                const projects = projectManager.getProjects();
-                const projectToLoad = projects.find(p => p.id === projectId);
-                state = projectToLoad ? { ...projectToLoad } : getNewState();
-            }
-            ui.projectSelector.value = state.id;
-            renderUI();
-        }
-        
-        function renderUI() {
-            ui.archetypeRadios.forEach(r => r.checked = r.value === state.appArchetype);
-            ui.temaCentral.value = state.temaCentral;
-            ui.audiencia.value = state.audiencia;
-            ui.tono.value = state.tono;
-            ui.structureMethodRadios.forEach(r => r.checked = r.value === state.structureMethod);
-            ui.externalDocsRadios.forEach(r => r.checked = r.value === state.useExternalDocs);
-            ui.referenceMaterialInput.value = state.referenceMaterial;
-            ui.referenceMaterialSection.style.display = state.useExternalDocs === 'si' ? 'block' : 'none';
-            renderSubtopicsUI();
-            renderPedagogyUI();
-            ui.outputPrompt.value = generateFinalPrompt();
-        }
 
-        function renderSubtopicsUI() {
-            if (state.structureMethod === 'ai') {
-                ui.subtemasContainerAi.classList.remove('hidden');
-                ui.subtemasContainerManual.classList.add('hidden');
-                ui.addSubtemaBtn.classList.add('hidden');
-                if (state.subtemas && state.subtemas.length > 0) {
-                    ui.subtemasContainerAi.innerHTML = state.subtemas.map(s => `<p class="text-gray-300">- ${s}</p>`).join('');
-                } else if(!ui.subtemasContainerAi.querySelector('.spinner')) {
-                    ui.subtemasContainerAi.innerHTML = `<p class="text-gray-500 text-sm">Define tema y audiencia.</p>`;
-                }
-            } else {
-                ui.subtemasContainerAi.classList.add('hidden');
-                ui.subtemasContainerManual.classList.remove('hidden');
-                ui.addSubtemaBtn.classList.remove('hidden');
-                ui.subtemasContainerManual.innerHTML = (state.subtemas || []).map((subtema, index) => `<div class="flex items-center space-x-2"><input type="text" value="${subtema}" class="form-input flex-grow" data-index="${index}"><button class="btn !bg-red-800 !p-2" data-index="${index}">-</button></div>`).join('');
-            }
-        }
-
-        function renderPedagogyUI() {
-             if (state.recommendedModel && state.recommendedModel.model) {
-                ui.recommendationArea.innerHTML = `<p class="font-semibold text-violet-300">Recomendación IA: <span class="font-bold text-white">${state.recommendedModel.model}</span></p><p class="text-sm text-violet-400 mt-1">${state.recommendedModel.justification}</p>`;
-            } else if(!ui.recommendationArea.querySelector('.spinner')) {
-                ui.recommendationArea.innerHTML = `<p class="text-sm text-gray-400">Define tema y audiencia.</p>`;
-            }
-        }
-
-        function generateFinalPrompt() {
-            const archetypeData = {
-                tutorial: { name: 'Tutorial Interactivo', description: 'Enfocado en guiar al usuario paso a paso.' },
-                herramienta: { name: 'Herramienta Práctica', description: 'Enfocado en resolver un problema específico.' },
-                juego: { name: 'Juego Educativo', description: 'Enfocado en la gamificación del aprendizaje.' }
+            const state = {
+                appComplexity: 'Intermedia',
+                contentDepth: '2',
+                temaCentral: 'El Sistema Solar',
+                audiencia: 'Niños de 8 a 10 años',
+                tono: 'Lúdico e infantil',
+                structureMethod: 'ai',
+                subtemas: [],
+                recommendedModel: '',
+                manualModel: '',
+                useExternalDocs: 'no',
+                sourceStrategy: 'docs_and_ai'
             };
-            const selectedArchetype = archetypeData[state.appArchetype];
-            let prompt = `
-# MEGA-PROMPT v7
-## 1. CONCEPTO
-- Arquetipo: ${selectedArchetype.name}.
-- Tema: ${state.temaCentral || '(No definido)'}
-- Audiencia: ${state.audiencia || '(No definida)'}
-- Tono: ${state.tono}
-- Descripción del Arquetipo: ${selectedArchetype.description}
+            const ui = {
+                complexityRadios: document.querySelectorAll('input[name="appComplexity"]'),
+                contentDepthSlider: document.getElementById('content-depth'),
+                temaCentral: document.getElementById('tema-central'),
+                audiencia: document.getElementById('audiencia'),
+                tono: document.getElementById('tono'),
+                structureMethodRadios: document.querySelectorAll('input[name="structureMethod"]'),
+                subtemasContainerAi: document.getElementById('subtemas-container-ai'),
+                subtemasContainerManual: document.getElementById('subtemas-container-manual'),
+                addSubtemaBtn: document.getElementById('add-subtema-btn'),
+                recommendationArea: document.getElementById('recommendation-area'),
+                manualPedagogySelect: document.getElementById('manual-pedagogy'),
+                externalDocsRadios: document.querySelectorAll('input[name="useExternalDocs"]'),
+                sourceStrategySection: document.getElementById('source-strategy-section'),
+                sourceStrategyRadios: document.querySelectorAll('input[name="sourceStrategy"]'),
+                outputPrompt: document.getElementById('output-prompt'),
+                copyBtn: document.getElementById('copy-btn'),
+            };
 
-## 2. ESTRUCTURA Y PEDAGOGÍA
-- Estructura de Contenido:
-${(state.subtemas && state.subtemas.length > 0) ? state.subtemas.map(s => `  - ${s}`).join('\n') : '  - (Generar estructura lógica)'}
-- Modelo Pedagógico: ${state.recommendedModel.model || 'No determinado'}.
+            const pedagogyData = {
+                "Instrucción Directa": "Ideal para temas fundacionales que requieren una base de conocimiento explícita (ej. matemáticas, gramática). Se enfoca en la claridad y la transmisión eficiente de información.",
+                "Aprendizaje Basado en Problemas": "Perfecto para temas de diagnóstico y análisis (ej. medicina, consultoría). Los usuarios se enfrentan a un problema complejo para buscar y aplicar conocimientos.",
+                "Aprendizaje Basado en Proyectos": "Óptimo para temas creativos o de construcción (ej. programación, diseño). El aprendizaje se centra en crear un producto tangible de forma iterativa.",
+                "Recuperación Activa": "Enfocado en fortalecer la memoria a través del esfuerzo de recordar. Excelente para la memorización y retención de datos clave.",
+                "Aprendizaje Generativo": "Se basa en que los alumnos construyan su propio entendimiento resumiendo, explicando o mapeando conceptos. Ideal para la comprensión profunda.",
+                "Aprendizaje Espaciado": "Consiste en distribuir el estudio en el tiempo para combatir el olvido. Es una estrategia meta-aprendizaje para la retención a largo plazo."
+            };
+            
+            const debounce = (func, delay) => { let timeout; return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), delay); }; };
+            
+            function generateSubtopics(topic) {
+                const lowerTopic = topic.toLowerCase();
+                if (/\b(solar|planetas)\b/.test(lowerTopic)) return ['El Sol, nuestra estrella', 'Planetas Interiores', 'Planetas Exteriores', 'Otros cuerpos celestes'];
+                if (/\b(marketing)\b/.test(lowerTopic)) return ['Introducción al Marketing Digital', 'SEO y SEM', 'Marketing en Redes Sociales', 'Email Marketing y Automatización'];
+                if (/\b(historia.*roma)\b/.test(lowerTopic)) return ['La Fundación de Roma', 'La República Romana', 'El Imperio Romano', 'Caída del Imperio Romano'];
+                if (/\b(programación|python|javascript)\b/.test(lowerTopic)) return ['Variables y Tipos de Datos', 'Estructuras de Control (if/else)', 'Bucles (for/while)', 'Funciones y Módulos'];
+                return [];
+            }
+            function detectPedagogy(topic, audience) {
+                const lowerTopic = topic.toLowerCase();
+                const isChild = /niños|infantil|primaria|pequeños/.test(audience.toLowerCase());
+                if (isChild && /\b(crear|diseñar|construir)\b/.test(lowerTopic)) return "Aprendizaje Basado en Proyectos (con Andamiaje)";
+                if (/\b(crear|diseñar|construir|programar|negocios|arte|plan|marca)\b/.test(lowerTopic)) return "Aprendizaje Basado en Proyectos";
+                if (/\b(análisis|caso|diagnosticar|estrategia|historia|medicina|derecho)\b/.test(lowerTopic)) return "Aprendizaje Basado en Problemas";
+                if (lowerTopic) return "Instrucción Directa";
+                return "";
+            }
 
-## 3. FUENTES
-- Material de Referencia: ${state.useExternalDocs === 'si' ? 'Sí' : 'No'}.
-${state.useExternalDocs === 'si' && state.referenceMaterial ? `
-## 4. CONTEXTO ADICIONAL
-\`\`\`
-${state.referenceMaterial}
-\`\`\`
-` : ''}
+            function updateUI() {
+                updatePedagogyUI();
+                renderSubtopicsUI();
+                generatePrompt();
+            }
 
-## 5. REQUISITOS TÉCNICOS
-- Stack: HTML, TailwindCSS, JS, todo en un archivo.
-- No usar alert(). Usar modales.
-- Código comentado, responsivo y autocontenido.
+            function updatePedagogyUI() {
+                state.recommendedModel = detectPedagogy(state.temaCentral, state.audiencia);
+                if (state.recommendedModel) {
+                    const baseModel = state.recommendedModel.split(' (')[0];
+                    const justification = pedagogyData[baseModel] || "Modelo adecuado para el tema y audiencia.";
+                    ui.recommendationArea.innerHTML = `<p class="font-semibold text-violet-300">Modelo Recomendado por IA: <span class="font-bold text-white">${state.recommendedModel}</span></p><p class="text-sm text-violet-400 mt-1">${justification}</p>`;
+                } else {
+                    ui.recommendationArea.innerHTML = `<p class="text-sm text-gray-400">Define tema y audiencia para una recomendación...</p>`;
+                }
+            }
+
+            function renderSubtopicsUI() {
+                if (state.structureMethod === 'ai') {
+                    ui.subtemasContainerAi.classList.remove('hidden');
+                    ui.subtemasContainerManual.classList.add('hidden');
+                    ui.addSubtemaBtn.classList.add('hidden');
+                    if (state.subtemas.length > 0) {
+                        ui.subtemasContainerAi.innerHTML = state.subtemas.map(s => `<p class="text-gray-300">- ${s}</p>`).join('');
+                    } else {
+                        ui.subtemasContainerAi.innerHTML = `<p class="text-gray-500 text-sm">Los subtemas recomendados aparecerán aquí.</p>`;
+                    }
+                } else { // manual
+                    ui.subtemasContainerAi.classList.add('hidden');
+                    ui.subtemasContainerManual.classList.remove('hidden');
+                    ui.addSubtemaBtn.classList.remove('hidden');
+                    ui.subtemasContainerManual.innerHTML = state.subtemas.map((subtema, index) => `<div class="flex items-center space-x-2"><input type="text" value="${subtema}" class="form-input flex-grow" data-index="${index}" placeholder="Título del subtema"><button class="btn btn-secondary !p-2 !leading-none !bg-red-900/50 !text-red-400" title="Eliminar subtema" data-index="${index}">-</button></div>`).join('');
+                }
+            }
+            
+            function generatePrompt() {
+                const finalPedagogy = state.manualModel || state.recommendedModel;
+                const depthMap = { 1: { name: 'Breve', instruction: 'Generar contenido conciso, enfocándose en los conceptos clave sin profundizar demasiado.' }, 2: { name: 'Estándar', instruction: 'Generar explicaciones claras con ejemplos relevantes. Un balance entre detalle y brevedad.' }, 3: { name: 'Extenso', instruction: 'Generar explicaciones detalladas, múltiples ejemplos, datos curiosos y contexto adicional.' }};
+                const depthValue = depthMap[state.contentDepth] || depthMap[2];
+
+                let prompt = `
+# Prompt para "Prompt Architect"
+
+## 1. Alcance y Complejidad
+- **Complejidad de la App:** ${state.appComplexity}
+- **Profundidad del Contenido:** ${depthValue.name}
+  *(Instrucción a la IA: ${depthValue.instruction})*
+
+## 2. Definición de la Aplicación
+- **Tema Central:** ${state.temaCentral || 'No definido'}
+- **Audiencia Objetivo:** ${state.audiencia || 'No definida'}
+- **Tono y Estilo:** ${state.tono}
+
+## 3. Estructura de Contenido
+- **Método de Estructura:** ${state.structureMethod === 'ai' ? 'Recomendada por IA' : 'Manual'}
+- **Subtemas / Módulos:**
+${state.subtemas.length > 0 ? state.subtemas.map(s => `  - ${s}`).join('\n') : '  - (La IA debe generar la estructura)'}
+
+## 4. Estrategia Pedagógica y Fuentes
+- **Modelo Pedagógico:** ${finalPedagogy || 'No determinado'}
+  *(Instrucción a la IA: Implementar este modelo. Fue ${state.manualModel ? 'seleccionado manualmente' : 'recomendado por la IA'}).*
 `;
-            return prompt.trim();
-        }
-        
-        const debouncedAiCall = debounce(() => {
-            if (state.structureMethod === 'ai' && state.temaCentral && state.audiencia) {
-                api.getSubtopics();
-                api.getPedagogy();
-            }
-        }, 1200);
+                if (state.useExternalDocs === 'si') {
+                    const strategy = state.sourceStrategy === 'docs_only' ? "Exclusiva: Basarse ÚNICAMENTE en los documentos." : "Híbrida: Priorizar los documentos y complementar con la IA.";
+                    prompt += `- **Fuentes Externas:** Sí\n- **Estrategia:** ${strategy}\n`;
+                } else {
+                     prompt += `- **Fuentes Externas:** No\n`;
+                }
+                 prompt += `
+## 5. Requisitos Técnicos y Funcionales (Fijos)
+*(Instrucción a la IA: La aplicación generada DEBE adherirse a los siguientes requisitos.)*
+- **Pila Tecnológica:** React, Tailwind CSS, Firebase (Auth y Firestore).
+- **IA:** Google Gemini (gemini-2.0-flash).
+- **Requisitos:** Persistencia en \`artifacts/\${appId}/public/data/examResults\`, no \`alert()\`, feedback claro, responsivo, código comentado.
 
-        ui.enterBtn.addEventListener('click', () => {
-            ui.loginScreen.style.opacity = '0';
-            setTimeout(() => {
-                ui.loginScreen.style.display = 'none';
-                ui.appContainer.classList.remove('hidden', 'invisible', 'opacity-0');
-            }, 500);
-        });
-
-        ui.projectSelector.addEventListener('change', (e) => loadState(e.target.value));
-        ui.saveBtn.addEventListener('click', () => projectManager.saveCurrentState());
-        ui.deleteBtn.addEventListener('click', () => projectManager.deleteProject(state.id));
-
-        ui.archetypeRadios.forEach(radio => radio.addEventListener('change', e => { state.appArchetype = e.target.value; renderUI(); }));
-        ui.structureMethodRadios.forEach(radio => radio.addEventListener('change', e => { state.structureMethod = e.target.value; renderUI(); }));
-        ui.externalDocsRadios.forEach(radio => radio.addEventListener('change', e => { state.useExternalDocs = e.target.value; renderUI(); }));
-        ui.temaCentral.addEventListener('input', e => { state.temaCentral = e.target.value; debouncedAiCall(); });
-        ui.audiencia.addEventListener('input', e => { state.audiencia = e.target.value; debouncedAiCall(); });
-        ui.tono.addEventListener('change', e => { state.tono = e.target.value; renderUI(); });
-        ui.referenceMaterialInput.addEventListener('input', e => { state.referenceMaterial = e.target.value; renderUI(); });
-        
-        ui.addSubtemaBtn.addEventListener('click', () => { if(!state.subtemas) {state.subtemas = []}; state.subtemas.push(''); renderUI(); });
-        ui.subtemasContainerManual.addEventListener('click', e => { 
-            if(e.target.matches('button')) {
-                const index = parseInt(e.target.dataset.index);
-                if(state.subtemas) { state.subtemas.splice(index, 1); renderUI(); }
+## 6. Instrucción Final
+Ahora, **crea una app** con las especificaciones detalladas en este prompt.
+`;
+                ui.outputPrompt.value = prompt.trim();
             }
-        });
-        ui.subtemasContainerManual.addEventListener('input', e => { 
-            if(e.target.matches('input')) {
-                const index = parseInt(e.target.dataset.index);
-                if(state.subtemas) { state.subtemas[index] = e.target.value; renderUI(); }
-            }
-        });
-        
-        ui.copyBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(ui.outputPrompt.value).then(() => {
-                ui.copyBtn.textContent = '¡Copiado!';
-                setTimeout(() => { ui.copyBtn.textContent = 'Copiar Prompt'; }, 2000);
+            
+            const handleTopicChange = () => {
+                const newSubtopics = generateSubtopics(state.temaCentral);
+                // CORRECCIÓN: Siempre actualizar el estado de los subtemas
+                state.subtemas = newSubtopics; 
+                updateUI();
+            };
+            const debouncedTopicHandler = debounce(handleTopicChange, 1000);
+            
+            // Event Listeners
+            ui.complexityRadios.forEach(radio => radio.addEventListener('change', e => { state.appComplexity = e.target.value; generatePrompt(); }));
+            ui.contentDepthSlider.addEventListener('input', e => { state.contentDepth = e.target.value; generatePrompt(); });
+            [ui.temaCentral, ui.audiencia].forEach(el => el.addEventListener('input', e => {
+                const stateKey = e.target.id.replace(/-(\w)/g, (_, p1) => p1.toUpperCase());
+                state[stateKey] = e.target.value;
+                ui.manualPedagogySelect.value = ''; state.manualModel = '';
+                if(stateKey === 'temaCentral') { debouncedTopicHandler(); } else { updateUI(); }
+            }));
+            ui.tono.addEventListener('change', e => { state.tono = e.target.value; generatePrompt(); });
+            ui.manualPedagogySelect.addEventListener('change', e => { state.manualModel = e.target.value; generatePrompt(); });
+
+            ui.structureMethodRadios.forEach(radio => radio.addEventListener('change', e => {
+                state.structureMethod = e.target.value;
+                renderSubtopicsUI();
+                generatePrompt();
+            }));
+
+            ui.addSubtemaBtn.addEventListener('click', () => { if (state.subtemas.length < 10) { state.subtemas.push(''); renderSubtopicsUI(); generatePrompt(); } });
+            ui.subtemasContainerManual.addEventListener('input', e => { if (e.target.matches('input')) { state.subtemas[parseInt(e.target.dataset.index)] = e.target.value; generatePrompt(); } });
+            ui.subtemasContainerManual.addEventListener('click', e => { if (e.target.matches('button')) { state.subtemas.splice(parseInt(e.target.dataset.index), 1); renderSubtopicsUI(); generatePrompt(); } });
+
+            ui.externalDocsRadios.forEach(radio => radio.addEventListener('change', e => {
+                state.useExternalDocs = e.target.value;
+                ui.sourceStrategySection.style.display = state.useExternalDocs === 'si' ? 'block' : 'none';
+                if(state.useExternalDocs === 'si'){ document.querySelector('input[name="sourceStrategy"][value="docs_and_ai"]').checked = true; state.sourceStrategy = 'docs_and_ai'; }
+                generatePrompt();
+            }));
+            ui.sourceStrategyRadios.forEach(radio => radio.addEventListener('change', e => { state.sourceStrategy = e.target.value; generatePrompt(); }));
+            ui.copyBtn.addEventListener('click', () => {
+                ui.outputPrompt.select();
+                try {
+                    document.execCommand('copy');
+                    ui.copyBtn.textContent = '¡Copiado!';
+                    setTimeout(() => { ui.copyBtn.textContent = 'Copiar Prompt'; }, 2000);
+                } catch (err) { console.error('Error al copiar', err); }
             });
+
+            function init() {
+                ui.temaCentral.value = state.temaCentral;
+                ui.audiencia.value = state.audiencia;
+                ui.tono.value = state.tono;
+                handleTopicChange();
+            }
+            init();
         });
-        
-        ui.improveBtn.addEventListener('click', () => api.improvePrompt());
-
-        function init() {
-            populateProjectSelector();
-            const projects = projectManager.getProjects();
-            const firstProjectId = projects.length > 0 ? projects[0].id : "new";
-            loadState(firstProjectId);
-        }
-
-        init();
     </script>
 </body>
 </html>
